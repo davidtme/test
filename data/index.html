@@ -1,0 +1,81 @@
+﻿<!doctype html>
+<html>
+<head>
+    <title>Test Site</title>
+    <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+    <meta name="viewport" content="width=device-width,user-scalable=no" />
+
+    <script type="text/javascript">
+
+    var prefixes = ' -webkit- -moz- -o- -ms- '.split(' ');
+    
+    var mq = function (query) {
+        return window.matchMedia(query).matches;
+    }
+
+    if (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
+        window.isTouch = true;
+    }
+    else {
+
+        // include the 'heartz' as a way to have a non matching MQ to help terminate the join
+        // https://git.io/vznFH
+        var query = ['(', prefixes.join('touch-enabled),('), 'heartz', ')'].join('');
+
+        window.isTouch = mq(query);
+    }
+
+    window.addEventListener("load",function() {
+        setTimeout(function(){
+            // This hides the address bar:
+            window.scrollTo(0, 1);
+        }, 0);
+    });
+
+    </script>
+
+    <style>
+        .grid_ {
+            background-color:#fff;
+            background-image:
+                linear-gradient(rgba(0,0,0,.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,0,0,.06) 1px, transparent 1px);
+            background-size:
+                17px 17px;
+            background-position:-1px -1px, -1px -1px;
+        }
+    
+        body {
+            padding: 0;
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 13px;
+            line-height: 17px;
+            height: 100%;
+            overflow:hidden;
+            background-color: black;
+
+        }
+
+        #App {
+            width:100%;
+            height:100%;
+        }
+
+        html {
+            height: 100%;
+            overflow:hidden;
+
+        }
+
+        * {
+            font-size: inherit;
+            line-height: inherit
+        }
+    </style>
+</head>
+<body>
+    <div id="App"></div>
+    <script src="scripts/app.js"></script>
+</body>
+</html>
